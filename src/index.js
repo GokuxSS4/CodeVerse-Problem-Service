@@ -2,6 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {PORT} = require('./config/server.config');
 const {appRouter} = require('./routes/index');
+const errorHandler = require('./utils/errorHandler');
+const mongoose = require('mongoose');
+
+const connetDB  = require('./config/db.config');
 
 const app = express();
 
@@ -17,6 +21,14 @@ app.get('/ping',(req,res)=>{
     })
 })
 
-app.listen(PORT,()=>{
+app.use(errorHandler);
+
+app.listen(PORT,async ()=>{
     console.log(`Server is Running on ${PORT}`);
+    await connetDB();
+    console.log("DB is connected");
+    const Cat = mongoose.model('Cat', { name: String });
+
+    const kitty = new Cat({ name: 'Zildjian' });
+    kitty.save().then(() => console.log('meow'));
 })

@@ -10,6 +10,16 @@ class ProblemService {
         const problem = await this.problemRepostiory.addProblem(problemData);
         return problem
     }
+
+    async getAllProblems(){
+        const problems = await this.problemRepostiory.getAllProblems();
+        return problems
+    }
+
+    async getProblem(problemId){
+        const problem = await this.problemRepostiory.getProblem(problemId);
+        return problem;
+    }
 };
 
 module.exports = ProblemService;

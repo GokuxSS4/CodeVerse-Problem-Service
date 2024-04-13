@@ -26,16 +26,32 @@ async function addProblem(req,res,next){
     }
 };
 
-function getProblem(req,res){
-   return res.status(StatusCodes.NOT_IMPLEMENTED).json({
-        message: "Not Implemented !"    
-    })
+async function getProblem(req,res,next){
+    try {
+        const problem = await problemService.getProblem(req.params.id);
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message: 'Successfully fetch problem',
+            error: {},
+            data: problem
+        }); 
+       } catch (error) {
+            next(error)
+       }
 };
 
-function getAllProblems(req,res){
-   return res.status(StatusCodes.NOT_IMPLEMENTED).json({
-        message: "Not Implemented !"    
-    })
+async function getAllProblems(req,res,next){
+   try {
+    const problems = await problemService.getAllProblems();
+    return res.status(StatusCodes.OK).json({
+        success: true,
+        message: 'Successfully fetches all problems',
+        error: {},
+        data: problems
+    }); 
+   } catch (error) {
+        next(error)
+   }
 };
 
 function updateProblem(req,res){

@@ -20,6 +20,11 @@ class ProblemService {
         const problem = await this.problemRepostiory.getProblem(problemId);
         return problem;
     }
+
+    async deleteProblem(problemId){
+        const deletedproblem = await this.problemRepostiory.deleteProblem(problemId);
+        return deletedproblem;
+    }
 };
 
 module.exports = ProblemService;

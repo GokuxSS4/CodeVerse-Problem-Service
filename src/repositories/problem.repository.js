@@ -8,7 +8,8 @@ class ProblemRepository{
             await Problem.create({
                 title: problemData.title,
                 description:problemData.description,
-                testCases:problemData.testCases ? problemData.testCases :[]
+                testCases:problemData.testCases ? problemData.testCases :[],
+                codeStubs: problemData.codeStubs
             });
             return problemData
         } catch (error) {

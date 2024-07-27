@@ -26,7 +26,21 @@ const problemSchema = new mongoose.Schema({
                 required: true
             }
         }
-    ]
+    ],
+    codeStubs: [
+        {
+            language:{
+                type: String,
+                required: true
+            },
+            startSnippet: String,
+            userSnippet: String,
+            endSnippet: String,
+        },
+    ],
+    editorial: {
+        type: String
+    }
 });
 
 const Problem = mongoose.model('Problem', problemSchema);
